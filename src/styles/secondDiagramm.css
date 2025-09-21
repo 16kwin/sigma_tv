@@ -1,0 +1,121 @@
+/* secondDiagramm.css */
+
+/* Основной контейнер */
+.second-container {
+  background-color: white;
+  border: 1px solid #42C2F4;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  box-sizing: border-box;
+}
+
+/* Шапка компонента */
+.second-header {
+ background-color:rgba(66, 194, 244);
+  color: white;
+  padding: 12px 20px; /* Больше отступ слева-справа */
+  text-align: left;
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 6px 6px 0 0;
+  margin: -10px -10px 10px -10px; 
+}
+
+/* Сетка блоков */
+.second-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 60% 40%;
+  gap: 10px;
+  flex-grow: 1;
+  padding: 5px;
+  box-sizing: border-box;
+  font-size: 12px;
+   min-height: 0; 
+}
+
+/* Общие стили ячеек */
+.second-cell {
+  box-sizing: border-box;
+  background: white;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  transition: transform 0.2s ease;
+  padding: 15px;
+  text-align: center;
+}
+.second-cell.cell-2 {
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* Разрешаем сжатие */
+  height: 100%; /* Занимаем всю высоту */
+  overflow: hidden; /* Запрещаем вытекание */
+}
+
+/* Контейнер диаграммы */
+.second-cell.cell-2 > .chart-wrapper:first-child {
+  flex: 1 1 70%; /* Основное пространство (70%) */
+  min-height: 0; /* Критически важно */
+  width: 100%;
+  position: relative;
+}
+
+/* Контейнер легенды */
+.second-cell.cell-2 > .chart-wrapper:last-child {
+  flex: 0 0 auto; /* Фиксированная высота */
+  padding-top: 8px;
+  width: 100%;
+}
+.chart-wrapper {
+  flex: 1 1 auto;  /* Занимает все доступное пространство */
+  display: flex;        /*  Используем flexbox для содержимого */
+  align-items: center;  /*  Выравниваем по вертикали */
+  justify-content: center; /* Выравниваем по горизонтали */
+}
+
+.second-cell.cell-1 > div:first-child { /* Стиль для заголовка "ВЫПОЛНЕНИЕ В СРОК" */
+  margin-bottom: 0; /* Убираем отступ снизу */
+  padding-bottom: 0; /* Убираем внутренний отступ снизу */
+}
+
+
+/* Эффекты при наведении */
+.second-cell:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* === Стили для легенды Chart.js === */
+.legend-list {
+  display: grid; /* Используем grid layout */
+  grid-template-columns: repeat(3, 1fr); /* Создаем 2 столбца */ /*  Отступы между элементами */
+  list-style: none; /* Убираем маркеры списка */
+  padding: 0;
+  margin: 0;
+}
+
+.legend-item {
+  display: flex; /*  Используем flexbox для выравнивания маркера и текста */
+  align-items: center; /*  Выравниваем по вертикали */
+  margin: 2px; /*  Отступ снизу */
+}
+
+.legend-color {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 5px;
+  border-radius: 3px;
+}
+
+.legend-label {
+  font-size: 8px;
+}

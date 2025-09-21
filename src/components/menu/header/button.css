@@ -1,0 +1,33 @@
+.buttons{
+  flex: 1;
+  display: flex;          /* Размещаем кнопки в ряд */
+  gap: 10px;             /* Отступ между кнопками */
+  padding: 10px;         /* Внутренний отступ контейнера */
+}
+
+.custom-button {
+  flex: 1;
+  display: flex;         /* Чтобы иконка и текст были в строку */
+  align-items: center; 
+  color: white;
+  font-weight: 800; /* Выравниваем по центру вертикально */
+  gap: 8px;              /* Отступ между иконкой и текстом */
+  padding: 10px 15px;    /* Внутренние отступы кнопки */
+  background-color: #001BC1;  /* Серый фон по умолчанию */
+  border: none;          /* Убираем стандартную рамку */
+  border-radius: 5px;    /* Закругляем углы */
+  cursor: pointer;       /* Курсор-указатель при наведении */
+  transition: background-color 0.3s;
+  font-size: 15px;  /* Плавное изменение цвета */
+}
+
+/* Эффект при наведении */
+.custom-button:hover {
+  background-color: #42C2F4;  /* Темнее при наведении */
+}
+
+/* Стили для картинки внутри кнопки */
+.custom-button img {
+  width: 20px;          /* Фиксируем ширину иконки */
+  height: 20px;         /* Фиксируем высоту иконки */
+}

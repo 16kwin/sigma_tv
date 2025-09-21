@@ -1,0 +1,103 @@
+.table-container {
+  width: 100%;
+  height: 100vh;
+  padding: 20px;
+  padding-bottom: 40px;
+  box-sizing: border-box;
+  overflow-y: hidden; /* Вертикальная прокрутка для всего контейнера */
+  position: relative;
+}
+
+/* Новая обертка для горизонтальной прокрутки таблицы */
+.table-scroll-wrapper {
+  width: 100%;
+  max-width: 4500px;
+      height: 70vh;
+  overflow-y: auto; 
+  overflow-x: auto; /* Горизонтальная прокрутка только для таблицы */
+  margin-top: 20px; /* Отступ от фильтра */
+}
+
+.table-format {
+  width: auto; /* Изменено с 100% на auto, чтобы таблица могла быть шире контейнера */
+  min-width: 100%; /* Минимальная ширина равна ширине контейнера */
+  border-spacing: 0;
+  border-collapse: separate;
+  table-layout: auto; /* Автоматическое определение ширины колонок */
+}
+/* Остальные стили остаются без изменений */
+.colonka,
+.stroka,
+.colonkahead,
+.strokahead {
+  border: 1px solid #ccc;
+  min-height: 30px;
+   min-width: 100px;
+}
+
+.head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+.colonka {
+  border: 1px solid #ccc;
+  min-height: 30px;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  white-space: normal;
+  
+  /* Новое правило для дат */
+  &:has([data-date-format="yyyy-mm-dd"]) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+.head::before {
+  content: "";
+  position: absolute;
+  top: -5vh;
+  left: 0;
+  width: 110%;
+  height: 8vh;
+  background-color: white;
+  z-index: -1;
+}
+
+.table-format tbody tr:nth-child(odd) {
+  background-color: color-mix(in srgb, #42c2f4 11%, white);
+}
+
+.colonka,
+.colonkahead {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.table-format tbody {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.green {
+  background-color: lightgreen;
+  color: black;
+}
+
+.red {
+  background-color: lightcoral;
+  color: black;
+}
+
+.date-cell {
+  white-space: nowrap;
+}
+
+.no-break {
+  white-space: nowrap;
+  overflow-wrap: break-word;
+}

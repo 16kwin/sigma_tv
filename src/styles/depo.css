@@ -1,0 +1,168 @@
+/* Основной контейнер */
+.depo-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: white;
+  flex: 1; /* Растягивается на доступное пространство */
+  min-height: 0; /* Критично для корректного сжатия */
+}
+
+/* Главная шапка */
+.depo-main-header {
+  background-color: #42c2f4;
+  color: white;
+  padding: 14px 20px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.2em;
+  flex-shrink: 0; /* Фиксированная высота */
+}
+
+/* Контейнер таблицы */
+.depo-container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex: 1; /* Занимает все доступное пространство */
+  min-height: 0;
+}
+
+/* Шапка таблицы */
+.depo-table-header {
+  display: flex;
+  background-color: #f5f5f5;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  flex-shrink: 0; /* Фиксированная высота */
+}
+
+/* Обертка тела таблицы */
+.depo-table-body-wrapper {
+  flex: 1; /* Растягивается на оставшееся пространство */
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  min-height: 150px; /* Минимальная высота */
+}
+
+/* Тело таблицы */
+.depo-table-body {
+  position: absolute;
+  width: 100%;
+  animation: scroll-up 40s linear infinite;
+}
+
+.depo-table-body.paused {
+  animation-play-state: paused;
+}
+
+/* Строки таблицы */
+.depo-row {
+  display: flex;
+  min-height: 40px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Ячейки таблицы */
+.depo-cell {
+  flex: 1;
+  min-width: 0; /* Разрешает сжатие */
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-right: 1px solid #eee;
+  white-space: nowrap;
+}
+
+/* Цветовая индикация */
+.success {
+  background-color: #D4EFDF;
+}
+
+.error {
+  background-color: #FFB6B6;
+}
+
+.white {
+  background-color: white;
+}
+.control{
+  background-color: rgb(235, 67, 53);
+}
+
+/* Фикс для последней ячейки */
+.depo-cell:last-child {
+  border-right: none;
+}
+
+/* Сообщение о загрузке */
+.depo-loading {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Разделители */
+.depo-divider {
+  height: 1px;
+  background-color: red;
+  margin: 5px 0;
+}
+
+/* Анимация */
+@keyframes scroll-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(calc(-100% + var(--visible-height, 200px)));
+  }
+}
+
+/* Легенда */
+.depo-legend {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding: 12px 20px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+  flex-shrink: 0; /* Фиксированная высота */
+}
+
+.legend-item2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-color2 {
+  width: 30px;
+  height: 15px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.legend-color2.success {
+  background-color: #FFB6B6;
+}
+
+.legend-color2.error {
+  background-color: #D4EFDF;
+}
+.legend-color2.control {
+  background-color: rgb(235, 67, 53);
+}

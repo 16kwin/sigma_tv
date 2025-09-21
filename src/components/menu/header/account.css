@@ -1,0 +1,70 @@
+
+
+.account-button {
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 16px;
+  background-color: #001BC1;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-sizing: border-box;
+  font-size: 15px; 
+}
+
+.account-button:hover {
+  background-color: #42C2F4;
+}
+
+.account-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.account-container {
+  position: static; /* Убираем relative */
+  display: flex;
+  flex: 0 0 auto; /* Изменено с 10% */
+}
+
+.dropdown-menu {
+  position: fixed; /* Меняем absolute на fixed */
+  top: 53px; /* Подгоняем под высоту шапки */
+  right: 0px; /* Выравниваем по правому краю */
+  width: 150px; /* Ширина по содержимому */
+  min-width: 100px;
+  z-index: 1001;
+  font-size: 15px;  /* Выше шапки */
+}
+
+.account-button:hover + .dropdown-menu,
+.dropdown-menu:hover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.menu-item {
+  width: 100%;
+  padding: 8px 16px;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 15px; 
+}
+
+.exit-button {
+  color: #ffffff;
+  background-color: #001BC1;
+}
+
+.menu-item:hover {
+  background-color: #42C2F4;
+}

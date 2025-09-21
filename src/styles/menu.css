@@ -1,0 +1,21 @@
+.bodycolor {
+  background-color: #FFFFFF; /* Серый фон страницы */
+  margin: 0;
+  font-family: Inter, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100%;          /* Занимает всю высоту экрана */
+  width: 100%;
+  overflow: hidden;
+}
+.content{
+  overflow: hidden;
+   height: 100%;
+}
+.menu-container-out {
+  width: 100vw; /* Занимает 100% ширины viewport */
+  min-width: var(--window-width);
+  min-height: var(--window-height); /* Не позволяет сжиматься */
+  height: 100vh;
+  overflow: auto; 
+}

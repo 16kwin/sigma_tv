@@ -1,0 +1,155 @@
+.firstdiagramm {
+  background-color: white;
+  border: 1px solid rgba(66, 194, 244);
+  margin: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  box-sizing: border-box; 
+}
+
+.diagram-header {
+  background-color:rgba(66, 194, 244);
+  color: white;
+  padding: 12px 20px; /* Больше отступ слева-справа */
+  text-align: left;
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 6px 6px 0 0;
+  margin: -10px -10px 10px -10px; /* Компенсируем padding родителя */
+}
+
+.blocks-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  flex-grow: 1;
+  box-sizing: border-box; 
+}
+
+.block {
+  box-sizing: border-box; 
+  background: white;
+  border-radius: 6px;
+  display: flex;
+  font-size: 12px; 
+  flex-direction: column; /* Располагаем элементы вертикально */
+  align-items: center; /* Центрируем по горизонтали */
+  justify-content: center; /* Центрируем по вертикали */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  transition: transform 0.2s ease;
+  text-align: center; /* Центрируем текст */ /* Задайте фиксированную высоту, чтобы блоки выглядели одинаково */
+}
+
+/* Стили для данных (чисел) */
+.block > span {
+  font-size: 30px; /* Увеличиваем размер шрифта */
+  font-weight: bold; /* Делаем шрифт жирным */; /* Добавляем отступы сверху и снизу */
+}
+
+.block.block5 {
+  display: flex; /* Используем Flexbox */
+  flex-direction: column; /* Располагаем элементы вертикально */
+  align-items: center; /* Центрируем элементы по горизонтали (ось cross-axis) */
+  text-align: center; /* Выравниваем текст по центру (для заголовка и всего, что не flex-элемент) */
+  border: 1px solid #ccc; /* Для наглядности */
+  padding: 10px;
+  justify-content: space-around; /* Распределяем пространство между элементами */
+}
+
+.block5-header {
+  font-weight: bold; /* Пример стилизации заголовка */
+  margin-bottom: 5px; /* Отступ снизу от заголовка */
+  width: 100%; /* Чтобы text-align: center работал корректно */
+}
+
+.block5-content {
+  display: flex; /* Используем Flexbox для содержимого */
+  justify-content: space-between; /* Размещаем элементы по краям */
+  align-items: center; /* Выравниваем элементы по центру */
+  width: 100%; /* Чтобы span'ы занимали всю ширину */
+}
+
+.block5-content .left-part {
+  flex-grow: 1; /* Левая часть занимает доступное пространство */
+  text-align: center; /* Центрируем */
+  padding-right: 0px; /* Отступ справа для разделения */
+}
+
+.block5-content .right-part { /* Правая часть не сжимается */
+  text-align: center; 
+    flex-grow: 1;/* Центрируем */
+  padding-left: 0px; /* Отступ слева для разделения */
+  white-space: nowrap; /* Предотвращаем перенос строк для "часов" */
+}
+
+/* Стили для значений в block5-content */
+.block5-content .left-part > span,
+.block5-content .right-part > span {
+    font-size: 30px; /* Увеличиваем размер шрифта */
+    font-weight: bold; /* Делаем шрифт жирным */
+    display: block; /* Чтобы занимало всю ширину ячейки */
+}
+
+/* Если нужно, чтобы "часов" было под текстом правой части, а не рядом */
+.block5-content .right-part br {
+  display: block; /* Делает <br/> блочным элементом */
+  margin-bottom: 5px; /* Отступ после <br/> */
+}
+
+/* Индивидуальные стили блоков (опционально) */
+.block1 {
+  color: rgba(13, 193, 0);
+}
+
+.block2 {
+  color: rgba(13, 193, 0);
+}
+
+.block3 {
+  color: rgba(66, 194, 244);
+}
+
+.block4 {
+  color: rgba(81, 48, 50);
+}
+
+.block5 {
+  color: rgba(235, 67, 53);
+}
+
+.block6 {
+  color: rgba(235, 67, 53);
+}
+
+.block7 {
+  color: rgba(81, 48, 50);
+}
+
+.block:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+.block-wide {
+  grid-column: 1 / -1; /* Растягиваем на всю ширину */
+  width: 100%;
+  margin-top: 10px;
+  text-align: center;
+  justify-content: center;
+   padding: 7px 8px;
+}
+.custom-tooltip {
+  background: white;
+  border: 1px solid #42C2F4;
+  border-radius: 4px;
+  padding: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  z-index: 100;
+  pointer-events: none;
+  font-size: 14px;
+}
+
+

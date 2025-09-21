@@ -1,0 +1,148 @@
+.third-container {
+  flex-shrink: 0;
+  background-color: white;
+  border: 1px solid #42C2F4;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  flex: 1;
+}
+
+.third-header {
+  background-color: rgba(66, 194, 244);
+  color: white;
+  padding: 12px 20px;
+  text-align: left;
+  font-weight: bold;
+  border-radius: 6px 6px 0 0;
+  margin: -10px -10px 10px -10px;
+}
+
+.volume-and-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.volume-text {
+  font-size: 1.2em;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.diagram-buttons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.toggle-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  color: #555;
+  transition: all 0.3s ease;
+}
+
+.toggle-option:hover {
+  color: #000;
+}
+
+.toggle-circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #42C2F4;
+  transition: all 0.3s ease;
+}
+
+.toggle-option.active .toggle-circle {
+  background-color: #42C2F4;
+  border-color: #42C2F4;
+}
+
+.toggle-option.active {
+  color: #000;
+  font-weight: 500;
+}
+
+.third-main-block {
+  background: white;
+  border-radius: 6px;
+  flex-grow: 1;
+  display: flex;
+  flex: 1; /* Занимаем всё доступное пространство */
+  min-height: 0;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border: 1px solid #2196F3;
+  padding: 15px;
+  gap: 15px;
+}
+.third-main-block > .recharts-wrapper {
+  height: 60% !important; /* Фиксируем соотношение */
+}
+
+/* Для нижнего графика */
+.performance-chart-container {
+  height: 40%; }
+  
+.bottom-chart-label {
+  text-align: center;
+  font-weight: bold;
+  color: #333;
+}
+
+.recharts-legend-item {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.recharts-legend-item-text {
+  margin-left: 5px;
+  font-size: 14px;
+}
+.performance-chart-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.performance-legend3 {
+  margin-left: 20px;
+  padding: 5px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background: #f9f9f9;
+  width: 40%;
+  max-height: 50px;
+}
+
+.legend-item3 {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+
+.legend-color3 {
+  width: 20px;
+  height: 20px;
+  margin: 2px;
+  margin-right: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.bottom-chart-label {
+  text-align: center;
+  margin: 10px 0;
+  font-weight: bold;
+  color: #333;
+}

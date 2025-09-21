@@ -1,0 +1,5 @@
+.header {
+    background-color: #001BC1;
+    display: flex;
+    z-index: 1000;
+}

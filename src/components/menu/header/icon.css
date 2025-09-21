@@ -1,0 +1,36 @@
+.icon{
+ flex: 0 0 20%;
+ display: flex; 
+ padding: 10px;
+ align-items: center; 
+ box-sizing: border-box;
+}
+.image {
+  width: 50px;          /* Фиксированная ширина */
+  height: 50px;         /* Фиксированная высота */
+  object-fit: cover;
+  padding: 0 10px 0 0;     /* Обрезаем картинку, если она не квадратная */
+}
+.text-block {
+  display: flex;
+  flex-direction: column; /* Текст в колонку (2 строки) */
+  justify-content: center; /* Центрируем текст по вертикали */
+  height: 50px;         /* Высота = высоте картинки */
+  color: white;
+  justify-content: center; /* Центрируем текст внутри блока */
+  height: 100%; 
+}
+
+.title {
+  font-size: 20px;       /* Крупный шрифт */
+  margin: 0;             /* Убираем отступы */
+  line-height: 1.2; 
+  font-weight: 800;     /* Межстрочный интервал */
+}
+
+.subtitle {
+  font-size: 15px;       /* Мелкий шрифт */
+  margin: 0;             /* Убираем отступы */          
+  line-height: 1.2;
+  font-weight: 800;
+}

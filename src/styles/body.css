@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* или любая нужная высота */
+}
+
+.diagram-container {
+  flex: 1; /* Диаграммы занимают половину высоты *//* Ограничиваем максимальную высоту */
+  overflow: hidden; /* Скрываем лишнее, если содержимое больше высоты */
+}
+
+.bodyinfo {
+  background-color: #FFFFFF;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: row;
+  height: 100%; /* Важно: Растягиваем на всю высоту diagram-container */
+}
+
+.bottom-item {
+  flex: 1;
+   display: flex;/* Таблица занимает половину высоты *//* Ограничиваем максимальную высоту */
+  border: 1px solid #ccc;
+  padding: 20px;
+  text-align: center;
+  overflow: hidden; /* Добавляем прокрутку, если контент не помещается */
+}

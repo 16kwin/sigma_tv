@@ -1,0 +1,103 @@
+/* src/components/ProductionFilter.css */
+
+.filter-container {
+  display: flex;
+  flex-wrap: wrap; /* Позволяет переноситься на новую строку, если места не хватает */
+  gap: 15px; /* Расстояние между элементами фильтра. У вас было 15px, оставлю, но можно и 10px из вашего CSS */
+  padding: 15px; /* Немного больше отступа внутри контейнера */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px; /* Отступ снизу от самого фильтра */
+  background-color: #f9f9f9;
+  align-items: center; /* Выравниваем элементы по центру по вертикали */
+}
+
+.filter-item {
+    display: flex;
+    align-items: center; /* Выравниваем label и select по центру */
+    gap: 8px; /* Расстояние между label и select */
+}
+
+.filter-label {
+  /* display: flex;  Убрал, так как flex-direction: column нужен если label сам блок. Тут он inline */
+  /* flex-direction: column; */
+  font-size: 16px;
+  font-weight: bold; /* Сделаем метки жирнее */
+  color: #333;
+}
+/* Добавьте в productionFilter.css */
+.filter-label2 {
+  display: flex;
+    font-size: 16px;
+    align-items: center;
+     margin-top: 7px;
+    font-weight: bold;
+  align-items: center;
+  gap: 8px; /* Пространство между чекбоксом и текстом */
+  cursor: pointer;
+}
+
+.filter-checkbox {
+  cursor: pointer;
+  margin: 0; /* Убираем лишние отступы */
+}
+.filter-select {
+  padding: 8px 12px; /* Увеличил padding для удобства */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer; /* Показываем, что это кликабельный элемент */
+  min-width: 100px; /* Минимальная ширина, чтобы select не становился слишком узким */
+}
+
+/* Уберем стандартное оформление arrow у select, если нужно */
+.filter-select::-ms-expand {
+    display: none;
+}
+
+.filter-select:hover,
+.filter-select:focus {
+    border-color: #007bff; /* Подсветка при наведении/фокусе */
+    outline: none; /* Убираем стандартный outline */
+}
+.filter-legend5 {
+  font-size: 16px;
+  display: flex;
+  gap: 15px;
+  margin-left: auto; /* Автоматический отступ слева - прижимает к правому краю */
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+}
+
+.legend-item5 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-color5 {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.legend-label5 {
+  font-size: 16px;
+  color: #333;
+  white-space: nowrap;
+}
+
+/* Цвета для легенды */
+.legend-color5.success {
+  background-color: #D4EFDF;
+}
+
+.legend-color5.warning {
+  background-color:#FFB6B6 ;
+}
+
+.legend-color5.neutral {
+  background-color: lightyellow;
+}
