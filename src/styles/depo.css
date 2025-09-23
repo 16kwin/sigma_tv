@@ -156,11 +156,11 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.legend-color2.success {
+.legend-color2.error {
   background-color: #FFB6B6;
 }
 
-.legend-color2.error {
+.legend-color2.success {
   background-color: #D4EFDF;
 }
 .legend-color2.control {
