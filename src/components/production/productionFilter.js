@@ -23,7 +23,6 @@ const ProductionFilter = ({ onFilterChange }) => {
 
   const [selectedYear, setSelectedYear] = useState(currentYear);
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
-  const [selectedPercentage, setSelectedPercentage] = useState(0.8); // Изменено на 0.8 (было 80)
 
   const generateYears = () => {
     const years = [];
@@ -33,18 +32,6 @@ const ProductionFilter = ({ onFilterChange }) => {
       years.push(year);
     }
     return years;
-  };
-
-  const generatePercentageOptions = () => {
-    const options = [
-      { value: 1, label: '1' },    // Было 100%
-      { value: 0.9, label: '0.9' }, // Было 80%
-      { value: 0.8, label: '0.8' }, // Было 60%
-      { value: 0.7, label: '0.7' }, // Добавлено
-      { value: 0.6, label: '0.6' },
-      { value: 0.5, label: '0.5' }   // Добавлено
-    ];
-    return options;
   };
 
   const handleYearChange = (event) => {
@@ -59,19 +46,14 @@ const ProductionFilter = ({ onFilterChange }) => {
     setSelectedMonth(parseInt(event.target.value, 10));
   };
 
-  const handlePercentageChange = (event) => {
-    setSelectedPercentage(parseFloat(event.target.value)); // Изменено на parseFloat
-  };
-
   useEffect(() => {
     if (onFilterChange) {
       onFilterChange({
         year: selectedYear,
-        month: selectedMonth,
-        percentage: selectedPercentage
+        month: selectedMonth
       });
     }
-  }, [selectedYear, selectedMonth, selectedPercentage, onFilterChange]);
+  }, [selectedYear, selectedMonth, onFilterChange]);
 
   const isMonthDisabled = (monthValue) => {
     return selectedYear === currentYear && monthValue > currentMonth;
@@ -110,20 +92,6 @@ const ProductionFilter = ({ onFilterChange }) => {
             >
               {month.label}
             </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="filter-item">
-        <label htmlFor="percentage-select" className="filter-label">Коэффициент: </label> {/* Изменено с "Процент" на "Порог" */}
-        <select
-          id="percentage-select"
-          value={selectedPercentage}
-          onChange={handlePercentageChange}
-          className="filter-select"
-        >
-          {generatePercentageOptions().map((option) => (
-            <option key={option.value} value={option.value}>{option.label}</option>
           ))}
         </select>
       </div>
