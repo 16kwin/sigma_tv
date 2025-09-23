@@ -6,7 +6,6 @@ const TableFilter = ({ transactions, onFilter, header }) => {
   const [factDateStartYear, setFactDateStartYear] = useState('');
   const [factDateStopMonth, setFactDateStopMonth] = useState('');
   const [factDateStopYear, setFactDateStopYear] = useState('');
-  const [transactionFilter, setTransactionFilter] = useState('');
   const [statusFilter, setStatusFilter] = useState('В работе');
 
   const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
@@ -28,14 +27,10 @@ const TableFilter = ({ transactions, onFilter, header }) => {
         (!factDateStopMonth || (transaction.factDateStop && transaction.factDateStop !== 'Нет данных' && new Date(transaction.factDateStop).getMonth() + 1 === parseInt(factDateStopMonth))) &&
         (!factDateStopYear || (transaction.factDateStop && transaction.factDateStop !== 'Нет данных' && new Date(transaction.factDateStop).getFullYear() === parseInt(factDateStopYear)));
 
-      // Фильтр по транзакции
-      const transactionMatch =
-        !transactionFilter || transaction.transaction.toLowerCase().includes(transactionFilter.toLowerCase());
-
       // Фильтр по статусу
       const statusMatch = !statusFilter || transaction.status === statusFilter;
 
-      return factDateStartMatch && factDateStopMatch && transactionMatch && statusMatch;
+      return factDateStartMatch && factDateStopMatch && statusMatch;
     });
 
     onFilter(filteredTransactions);
@@ -44,7 +39,6 @@ const TableFilter = ({ transactions, onFilter, header }) => {
     factDateStartYear,
     factDateStopMonth,
     factDateStopYear,
-    transactionFilter,
     statusFilter,
     transactions,
     onFilter,
@@ -107,12 +101,6 @@ const TableFilter = ({ transactions, onFilter, header }) => {
             </option>
           ))}
         </select>
-      </label>
-
-      {/* Фильтр по транзакции */}
-      <label className="filter-label">
-        Транзакция:
-        <input type="text" className="filter-input" value={transactionFilter} onChange={e => setTransactionFilter(e.target.value)} />
       </label>
 
       {/* Фильтр по статусу */}
