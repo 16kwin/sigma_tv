@@ -1,17 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip,LabelList, Legend, Cell, ResponsiveContainer } from 'recharts';
 import "../../styles/thirdDiagramm.css";
-
-const getSeasonColor = (month) => {
-  const monthNumber = parseInt(month.substring(5, 7), 10);
-  switch (monthNumber) {
-    case 12: case 1: case 2: return '#EAF2F8';
-    case 3: case 4: case 5: return '#D4EFDF';
-    case 6: case 7: case 8: return '#FCF3CF';
-    case 9: case 10: case 11: return '#F5B7B1';
-    default: return '#D4AC0D';
-  }
-};
 
 const getMonthName = (month) => {
   const monthNamesShort = ["Янв", "Фев", "Мар", "Апр", "Май", "Июнь", 
@@ -28,23 +16,6 @@ const getFullMonthName = (month) => {
 const getCurrentMonthKey = () => {
   const now = new Date();
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
-};
-
-const CustomTooltip = ({ active, payload }) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="custom-tooltip" style={{
-        background: '#fff',
-        padding: '5px',
-        border: '1px solid #ccc',
-        borderRadius: '4px'
-      }}>
-        <p style={{ fontWeight: 'bold' }}>{payload[0].payload.name}</p>
-        <p>Транзакций: {payload[0].value}</p>
-      </div>
-    );
-  }
-  return null;
 };
 
 function ThirdDiagramm({ months }) {
@@ -77,8 +48,7 @@ function ThirdDiagramm({ months }) {
       monthKey: month,
       month: getMonthName(month),
       fullMonth: getFullMonthName(month),
-      ...data,
-      color: getSeasonColor(month)
+      ...data
     }));
   };
 
@@ -100,33 +70,22 @@ function ThirdDiagramm({ months }) {
 
     return Object.entries(yearlyData).map(([year, data]) => ({
       year,
-      ...data,
-      color: '#E6E6FA'
+      ...data
     }));
   };
 
-  const handleBarClick = (data, event) => {
+  const handleItemClick = (item) => {
     try {
-      const payload = event?.activePayload?.[0]?.payload || 
-                     data?.activePayload?.[0]?.payload || 
-                     data?.payload || 
-                     data;
-      
-      if (!payload) {
-        console.error('No payload found in click data:', { data, event });
-        return;
-      }
-
-      const key = diagramType === 'month' ? payload.monthKey : payload.year;
+      const key = diagramType === 'month' ? item.monthKey : item.year;
       if (!key) {
-        console.error('Key not found in payload:', payload);
+        console.error('Key not found in item:', item);
         return;
       }
 
       console.log(`Clicked ${diagramType}:`, key);
       setSelectedKey(key);
     } catch (error) {
-      console.error('Error in handleBarClick:', error);
+      console.error('Error in handleItemClick:', error);
     }
   };
 
@@ -145,18 +104,18 @@ function ThirdDiagramm({ months }) {
       if (!targetData) {
         targetData = diagramType === 'month'
           ? data.find(item => item.monthKey === getCurrentMonthKey())
-          : data[0]; // Теперь data[0] всегда 2025 год
+          : data[0];
       }
 
       return [
-        { name: 'Закрыто в срок', value: targetData?.onTimeCount || 0, color: '#D4EFDF' },
-        { name: 'Закрыто не в срок', value: targetData?.delayedCount || 0, color: '#FFB6B6' }
+        { name: 'Закрыто в срок', value: targetData?.onTimeCount || 0 },
+        { name: 'Закрыто не в срок', value: targetData?.delayedCount || 0 }
       ];
     } catch (error) {
       console.error('Error calculating performanceData:', error);
       return [
-        { name: 'Закрыто в срок', value: 0, color: '#D4EFDF' },
-        { name: 'Закрыто не в срок', value: 0, color: '#FFB6B6' }
+        { name: 'Закрыто в срок', value: 0 },
+        { name: 'Закрыто не в срок', value: 0 }
       ];
     }
   }, [selectedKey, data, diagramType]);
@@ -181,7 +140,7 @@ function ThirdDiagramm({ months }) {
       
       const defaultKey = diagramType === 'month' 
         ? getCurrentMonthKey() 
-        : '2025'; // Всегда 2025 год по умолчанию
+        : '2025';
       setSelectedKey(defaultKey);
     } catch (error) {
       console.error('Error initializing data:', error);
@@ -215,67 +174,54 @@ function ThirdDiagramm({ months }) {
       </div>
 
       <div className="third-main-block">
-        <ResponsiveContainer width="100%">
-          <BarChart 
-            data={data}
-            onClick={handleBarClick}
-            margin={{ top: 5, right: 5, left: 5, bottom: 5 }}
-          >
-            <XAxis 
-              dataKey={diagramType === 'month' ? "month" : "year"} 
-              tick={{ fontSize: 15 }} // Уменьшаем размер шрифта
-              interval={0} // Гарантируем показ всех подписей
-            />
-            <Tooltip 
-              formatter={(value) => [`${value}`, 'Транзакций']}
-              labelFormatter={(label) => {
-                if (diagramType === 'month') {
-                  return data.find(d => d.month === label)?.fullMonth || label;
-                }
-                return `${label} год`;
-              }}
-            />
-            <Bar 
-              dataKey="transactionCount"
-              style={{ cursor: 'pointer' }}
-              onClick={handleBarClick}
-            >
-              {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} />
-              ))}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
+        {/* Заглушка для верхней диаграммы - объем транзакций */}
+        <div className="data-stub-top">
+          <div className="stub-header">
+            {diagramType === 'month' ? 'Объем транзакций по месяцам' : 'Объем транзакций по годам'}
+          </div>
+          <div className="stub-items-container">
+            {data.map((item, index) => (
+              <div 
+                key={index}
+                className={`stub-item ${selectedKey === (diagramType === 'month' ? item.monthKey : item.year) ? 'selected' : ''}`}
+                onClick={() => handleItemClick(item)}
+                style={{ cursor: 'pointer' }}
+              >
+                <div className="stub-label">
+                  {diagramType === 'month' ? item.month : `${item.year} год`}
+                </div>
+                <div className="stub-value">
+                  {item.transactionCount} транзакций
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
 
         <div className="bottom-chart-label">
           {bottomChartLabel}
         </div>
 
-<div className="performance-chart-container">
-  <ResponsiveContainer width="100%">
-    <BarChart
-      data={performanceData}
-      margin={{ top: 0, right: 0, left: 0, bottom: 13}}
-    >
-      <XAxis hide />
-      <Tooltip content={<CustomTooltip />} />
-      <Bar dataKey="value">
-        {performanceData.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={entry.color} />
-        ))}
-        <LabelList 
-          dataKey="value" 
-          position={(entry) => entry.value === 0 ? "top" : "insideMiddle"}
-          fill="#000"
-          fontSize={14}
-          formatter={(value) => value}
-          offset={5} // Отступ для значений над колонкой
-        />
-      </Bar>
-    </BarChart>
-  </ResponsiveContainer>
-
-
+        {/* Заглушка для нижней диаграммы - производительность */}
+        <div className="performance-chart-container">
+          <div className="data-stub-bottom">
+            <div className="performance-stats">
+              <div className="performance-item">
+                <div className="performance-color success"></div>
+                <div className="performance-info">
+                  <span className="performance-label">Транзакции в срок</span>
+                  <span className="performance-value">{performanceData[0].value}</span>
+                </div>
+              </div>
+              <div className="performance-item">
+                <div className="performance-color error"></div>
+                <div className="performance-info">
+                  <span className="performance-label">Транзакции с задержкой</span>
+                  <span className="performance-value">{performanceData[1].value}</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div className="performance-legend3">
             <div className="legend-item3">

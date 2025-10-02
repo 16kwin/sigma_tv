@@ -1,11 +1,28 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect, useRef } from 'react';
 import "../../styles/depo.css";
 
 function Depo({ data }) {
+  const [isPaused, setIsPaused] = useState(false);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.style.setProperty(
+        '--visible-height', 
+        `${containerRef.current.offsetHeight}px`
+      );
+    }
+  }, []);
+
   const transactionsWithDividers = useMemo(() => {
     if (!data?.transactions) return [];
-    return data.transactions;
+    const original = data.transactions;
+    return [...original, { type: 'divider' }, ...original, { type: 'divider' }, ...original, { type: 'divider' }, ...original, { type: 'divider' }, ...original, { type: 'divider' }, ...original, { type: 'divider' }, ...original, { type: 'divider' }, ...original, { type: 'divider' }, ...original, { type: 'divider' }, ...original, { type: 'divider' }, ...original, { type: 'divider' }, ...original, { type: 'divider' }, ...original, { type: 'divider' }, ...original, { type: 'divider' }, ...original, { type: 'divider' }];
   }, [data]);
+
+  const toggleAnimation = () => {
+    setIsPaused(prev => !prev);
+  };
 
   if (!data?.transactions) {
     return <div className="depo-loading">Загрузка данных...</div>;
@@ -25,19 +42,29 @@ function Depo({ data }) {
           <div className="depo-cell">Выходной контроль</div>
           <div className="depo-cell">Транспортное</div>
         </div>
-        <div className="depo-table-body-wrapper">
-          <div className="depo-table-body">
+        <div 
+          className="depo-table-body-wrapper"
+          onClick={toggleAnimation}
+          ref={containerRef}
+        >
+          <div 
+            className={`depo-table-body ${isPaused ? 'paused' : ''}`}
+          >
             {transactionsWithDividers.map((item, index) => (
-              <div key={`${item.transaction}-${index}`} className="depo-row">
-                <div className="depo-cell">{item.transaction}</div>
-                <div className={`depo-cell ${getStatusClass(item.vhodControlTimeExceeded)}`}></div>
-                <div className={`depo-cell ${getStatusClass(item.electricTimeExceeded)}`}></div>
-                <div className={`depo-cell ${getStatusClass(item.mechanicTimeExceeded)}`}></div>
-                <div className={`depo-cell ${getStatusClass(item.electronTimeExceeded)}`}></div>
-                <div className={`depo-cell ${getStatusClass(item.techTimeExceeded)}`}></div>
-                <div className={`depo-cell ${getStatusClass(item.vihodControlTimeExceeded)}`}></div>
-                <div className={`depo-cell ${getStatusClass(item.transportTimeExceeded)}`}></div>
-              </div>
+              item.type === 'divider' ? (
+                <div key={`divider-${index}`} className="depo-divider"></div>
+              ) : (
+                <div key={`${item.transaction}-${index}`} className="depo-row">
+                  <div className="depo-cell">{item.transaction}</div>
+                  <div className={`depo-cell ${getStatusClass(item.vhodControlTimeExceeded)}`}></div>
+                  <div className={`depo-cell ${getStatusClass(item.electricTimeExceeded)}`}></div>
+                  <div className={`depo-cell ${getStatusClass(item.mechanicTimeExceeded)}`}></div>
+                  <div className={`depo-cell ${getStatusClass(item.electronTimeExceeded)}`}></div>
+                  <div className={`depo-cell ${getStatusClass(item.techTimeExceeded)}`}></div>
+                  <div className={`depo-cell ${getStatusClass(item.vihodControlTimeExceeded)}`}></div>
+                  <div className={`depo-cell ${getStatusClass(item.transportTimeExceeded)}`}></div>
+                </div>
+              )
             ))}
           </div>
         </div>
